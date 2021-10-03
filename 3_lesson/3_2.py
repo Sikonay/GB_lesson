@@ -25,13 +25,12 @@ def repl(num):
         print('введите на английском от 0 - 10')
 
 #для второй задачи
-# def num_translate(num):
+def num_translate(num):
 
-#     if num == num.title():
-#         return repl(num.lower()).title()
-#     else:
-#         return repl(num.lower())
-
+    if num == num.title():
+        return repl(num.lower()).title()
+    else:
+        return repl(num.lower())
 
 num = input('напишите число на англииском ')
-print(repl(num.lower()))
+print(num_translate(num))
