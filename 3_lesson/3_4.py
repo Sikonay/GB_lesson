@@ -1,44 +1,24 @@
 def thesaurus(*args):
-    names = {}
-    for i in range(len(args)):
-        key_for = args[i][0]
-        names[key_for] = list(filter(lambda x: x[0] == key_for, args))
-    return names
-
+    result = {}
+    for name in args:
+        if result.get(name[0][0]):
+            result[name[0][0]].append(name)
+        else:
+            result[name[0][0]] = [name]
+    return (result)
 
 def thesaurus_adv(*args):
-    names = {}
+    result = {}
+    for name in args:
+        sur_name = name.split()[1][0]
 
-    for i in range(len(args)):
-        # print(i)
-        key_name = str(args[i][0])
-        # print(key_name)
-        key_surname = str(args[i].split(' ')[1])[0]
-        # key_surname = args[i].split(' ')[1]
+        if result.get(sur_name):
+            result[sur_name].append(name)
+        else:
+            result[sur_name] = [name]
+    for item in result:
+        result[item] = thesaurus(*result[item])
+    return result
 
-        print(list(filter(lambda x: str(x.split(' ')[1])[0] == key_surname, args)))
-
-        names[key_surname] = thesaurus(list(filter(lambda x: str(x.split(' ')[1])[0] == key_surname, args)))
-
-        #names[key_surname] = thesaurus('Иван Сергеев', 'Инна Серова', 'Анна Савельева')
-
-        print(key_name + ' / ' + key_surname)
-    return names
-
-
-print(thesaurus_adv('Иван Сергеев', 'Инна Серова', 'Петр Алексеев', 'Илья Иванов', 'Анна Савельева'))
-print()
-print(thesaurus('Иван Сергеев', 'Инна Серова', 'Петр Алексеев', 'Илья Иванов', 'Анна Савельева'))
-
-
-t = {
-        'С': {
-            'Иван Сергеев': [['Иван Сергеев', 'Инна Серова', 'Анна Савельева']]
-            },
-        'А': {
-            'Петр Алексеев': [['Петр Алексеев']]
-            },
-        'И': {
-            'Илья Иванов': [['Илья Иванов']]
-            }
-    }
+print(thesaurus("Иван Сергеев", "Инна Серова", "Петр Алексеев", "Илья Иванов", "Анна Савельева"))
+print(thesaurus_adv("Иван Сергеев", "Инна Серова", "Петр Алексеев", "Илья Иванов", "Анна Савельева"))
