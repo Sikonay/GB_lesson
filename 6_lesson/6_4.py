@@ -6,9 +6,8 @@ with open('users.csv', 'r', encoding='utf-8') as name, \
     names = name.read().splitlines()
     hobbys = hobby.read().splitlines()
 
-if len(names) < len(hobbys):
-    print(1)
-else:
-    user_hobby = dict(zip_longest(names, hobbys, fillvalue=None))
-    with open('result_3.txt', 'w') as f:
-        json.dump(user_hobby, f, ensure_ascii=False)
+result = ((names, hobbys) for names, hobbys in zip_longest(names, hobbys, fillvalue=None))
+
+with open('result_4.txt', 'w') as f:
+    for user in result:
+        f.write(f'{user[0]}: {user[1]}\n')
