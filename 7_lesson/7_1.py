@@ -6,6 +6,7 @@ for folder in folders:
     if not os.path.exists(folder):
         os.mkdir(folder)
 
+# выполнил изначально через рекурсию
 # folders = ['my_project', ['settings', 'mainapp', 'adminapp', 'authapp']]
 
 # def recurs_folders(folder_list):
