@@ -1,30 +1,27 @@
 import os
 
 folders = ['my_project', ['settings', 'mainapp', 'adminapp', 'authapp']]
+url = ''
 
 
 def recurs_folders(folder_list):
     temp = []
+    recur = ''
     for item in folder_list:
         if isinstance(item, str):
-            print(item)
-            print(type(item))
+            # print(item)
+            if not os.path.isdir(item):
+                # папки нет надо ее создать и переитти к нему
+                os.mkdir(item)
+                recur = item
+            else:
+                # папка есть необходимо переитти к нему
+                os.chdir(item)
         else:
-            print(recurs_folders(item))
-            print(type(item))
-
-print(recurs_folders(folders))
-
-# for item in folders:
-#     if isinstance(item,str):
-#         item
-#     else:
-#         return
+            # print(type(item))
+            os.chdir(recur)
+            recurs_folders(item)
+    return temp
 
 
-# print([item for sublist in folders for item in sublist])
-# def cread_folders(*args):
-#     for item in args:
-#         print(item)
-
-# cread_folders(folders)
+recurs_folders(folders)
