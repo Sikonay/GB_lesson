@@ -1,12 +1,18 @@
 import os
-folders = []
 
-with open('config.yaml','r', encoding='utf-8') as f:
-    for line in f:
-        print(line.find(' '))
-        print(line)
-            #print(line[line.find('|--')+3:])
+blank = {}
 
-for folder in folders:
-    if not os.path.exists(folder):
-        os.mkdir(folder)
+with open('config.yaml', 'r', encoding='utf-8') as f:
+    blank = dict(map(str.split, f.readlines()))
+
+project_dir = blank.pop('base')
+os.makedirs(project_dir, exist_ok=True)
+os.chdir(project_dir)
+
+for folder, files in blank.items():
+    os.makedirs(folder, exist_ok=True)
+    for file in files.split(','):
+        with open(folder+'/'+file,'w') as f:
+            print('файл создан')
+
+print(blank)
