@@ -1,4 +1,4 @@
-with open('nginx_logs.txt', 'r', encoding='utf-8') as f:
+with open('../8_lesson/nginx_logs.txt', 'r', encoding='utf-8') as f:
     my_list = []
     for line in f:
         adr = line[:line.find(' ')]

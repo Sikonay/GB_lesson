@@ -2,7 +2,10 @@ import re
 
 
 def email_parse(adres):
-    return {'username': re.split(r'@',adres)[0], 'domain': re.split(r'@',adres)[1]}
+    try:
+        return {'username': re.split(r'@',adres)[0], 'domain': re.split(r'@',adres)[1]}
+    except :
+        #print('Ошибка не смог разделить re.split')
+        raise ValueError()
 
-
-print(email_parse('kulumzhanov.s.b@gmail.com'))
+print(email_parse('kulumzhanov.s.bgmail.com'))
