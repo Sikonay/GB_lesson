@@ -8,4 +8,4 @@ def email_parse(adres):
         #print('Ошибка не смог разделить re.split')
         raise ValueError()
 
-print(email_parse('kulumzhanov.s.bgmail.com'))
+print(email_parse('kulumzhanov.s.b@gmail.com'))
