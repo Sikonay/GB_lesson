@@ -19,3 +19,6 @@ class Matrix:
             sum_matrix.append(result)
         return Matrix(sum_matrix)
 
+mareix_2_2 = Matrix([[1,2],[1,2]])
+
+print(mareix_2_2)
